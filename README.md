@@ -2,4 +2,4 @@
 
 Team GDEB PS5-ARCHITECTURE
 
-Team Members: Pierre Gatto, Nassim El-Gazzah, Hugo Bricard
+Team Members: Pierre Gatto, Nassim El-Gazzah, Hugo Bricard, Jean-Marie Dormoy
