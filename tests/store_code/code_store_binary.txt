@@ -1,0 +1,36 @@
+v2.0 raw
+
+.data
+	A:.word					sera à @0 dans RAM
+	B:.word					@1 dans RAM
+	MAX:.word				@2 RAM
+.end
+
+.text
+	MOV R6, 0xf				PC 0
+	0010 0110 0000 1111
+	MOV R7, 0xff			PC 1
+	0010 0111 1111 1111
+	STR R6, A				PC 2
+	1001 0110 0000 0000
+	STR R7, B				PC 3
+	1001 0111 0000 0001
+	LDR R0, A				PC 4
+	9800
+	LDR R1, B				PC 5
+	9901
+  if:	
+	CMP R0, R1				PC 6
+	4288
+	BMI else				PC 7
+	d40a
+	STR R0, MAX				PC 8
+	9002
+	B endif					PC 9
+	de0b
+  else:
+	STR R1, MAX				PC 10
+	9102
+  endif:
+	#null instruction		PC 11
+end
