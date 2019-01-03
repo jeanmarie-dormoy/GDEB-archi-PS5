@@ -3966,15 +3966,10 @@ end TCL_Generic;
       <circ-port height="10" pin="1150,480" width="10" x="335" y="55"/>
       <circ-anchor facing="east" height="6" width="6" x="337" y="57"/>
     </appear>
-    <wire from="(830,460)" to="(950,460)"/>
     <wire from="(540,620)" to="(590,620)"/>
-    <wire from="(830,460)" to="(830,470)"/>
     <wire from="(620,360)" to="(670,360)"/>
-    <wire from="(510,470)" to="(830,470)"/>
     <wire from="(1110,480)" to="(1150,480)"/>
     <wire from="(420,380)" to="(600,380)"/>
-    <wire from="(510,330)" to="(510,470)"/>
-    <wire from="(830,410)" to="(1150,410)"/>
     <wire from="(890,490)" to="(1080,490)"/>
     <wire from="(600,380)" to="(600,450)"/>
     <wire from="(480,710)" to="(600,710)"/>
@@ -3996,19 +3991,25 @@ end TCL_Generic;
     <wire from="(640,700)" to="(660,700)"/>
     <wire from="(680,280)" to="(710,280)"/>
     <wire from="(360,610)" to="(380,610)"/>
+    <wire from="(950,410)" to="(950,510)"/>
     <wire from="(480,630)" to="(500,630)"/>
+    <wire from="(1090,510)" to="(1090,570)"/>
+    <wire from="(510,290)" to="(510,330)"/>
     <wire from="(420,460)" to="(430,460)"/>
     <wire from="(420,610)" to="(430,610)"/>
-    <wire from="(470,630)" to="(480,630)"/>
     <wire from="(590,500)" to="(590,620)"/>
     <wire from="(670,530)" to="(870,530)"/>
     <wire from="(660,480)" to="(860,480)"/>
+    <wire from="(480,580)" to="(480,630)"/>
+    <wire from="(950,410)" to="(1150,410)"/>
     <wire from="(950,510)" to="(1090,510)"/>
     <wire from="(590,500)" to="(860,500)"/>
     <wire from="(1060,470)" to="(1080,470)"/>
     <wire from="(430,610)" to="(500,610)"/>
-    <wire from="(950,460)" to="(950,510)"/>
-    <wire from="(830,410)" to="(830,460)"/>
+    <comp lib="0" loc="(510,290)" name="Tunnel">
+      <a name="facing" val="south"/>
+      <a name="label" val="isEnableSPA"/>
+    </comp>
     <comp lib="3" loc="(540,620)" name="Subtractor">
       <a name="width" val="32"/>
     </comp>
@@ -4033,6 +4034,15 @@ end TCL_Generic;
       <a name="facing" val="east"/>
       <a name="width" val="7"/>
       <a name="label" val="imm7"/>
+    </comp>
+    <comp lib="0" loc="(1090,570)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="isEnableSPA"/>
+    </comp>
+    <comp lib="0" loc="(480,580)" name="Tunnel">
+      <a name="facing" val="south"/>
+      <a name="width" val="32"/>
+      <a name="label" val="sp"/>
     </comp>
     <comp lib="0" loc="(420,460)" name="Pin">
       <a name="width" val="32"/>
@@ -4061,6 +4071,10 @@ end TCL_Generic;
       <a name="width" val="32"/>
       <a name="value" val="0x0"/>
     </comp>
+    <comp lib="0" loc="(510,240)" name="Probe">
+      <a name="facing" val="south"/>
+      <a name="radix" val="10unsigned"/>
+    </comp>
     <comp lib="0" loc="(1150,480)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -4070,11 +4084,6 @@ end TCL_Generic;
     </comp>
     <comp lib="0" loc="(420,330)" name="Pin">
       <a name="label" val="Enable"/>
-    </comp>
-    <comp lib="0" loc="(470,630)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="width" val="32"/>
-      <a name="label" val="sp"/>
     </comp>
     <comp lib="0" loc="(1150,410)" name="Pin">
       <a name="facing" val="west"/>
