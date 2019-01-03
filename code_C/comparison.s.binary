@@ -1,0 +1,202 @@
+	.arch armv7-m
+	.fpu softvfp
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 2
+	.eabi_attribute 30, 6
+	.eabi_attribute 34, 1
+	.eabi_attribute 18, 4
+	.file	"comparison.c"
+	.text
+	.align	2
+	.global	main
+	.syntax unified
+	.thumb
+	.thumb_func
+	.type	main, %function
+main:
+	@ args = 0, pretend = 0, frame = 32
+	@ frame_needed = 0, uses_anonymous_args = 0
+	@ link register save eliminated.
+	sub	sp, sp, #32				PC 0
+	1011 0000 1001  1100
+	b09C
+
+	movs	r3, #2				PC 1
+	0010 0011 0000 0010
+	2302
+
+	str	r3, [sp, #12]			PC 2
+	1001 0011 0000 1100
+	930c
+
+	movs	r3, #10				PC 3
+	0010 0011 0000 1010
+	230a
+
+	str	r3, [sp, #16]			PC 4
+	1001 0011 0001 0000
+	9310
+
+	movs	r3, #1				PC 5
+	0010 0011 0000 0001
+	2301
+
+	str	r3, [sp, #4]			PC 6
+	1001 0011 0000 0100
+	9304
+
+	movs	r3, #0				PC 7
+	0010 0011 0000 0000
+	2300
+
+	str	r3, [sp, #8]			PC 8
+	1001 0011 0000 1000
+	9308
+
+	b	.L2						PC 9
+	1101 1110 0001 0001
+	de11
+.L3:
+	ldr	r3, [sp, #4]			PC 10
+	1001 1011 0000 0100
+	9b04
+
+	ldr	r2, [sp, #12]			PC 11
+	1001 1010 0000 1100
+	9a0c	
+
+	mul	r3, r2, r3				PC 12
+	0100 0011 0101 0011
+	4353
+
+	str	r3, [sp, #4]			PC 13
+	1001 0011 0000 0100
+	9304
+
+	ldr	r3, [sp, #8]			PC 14
+	1001 1011 0000 1000
+	9b08	
+
+	adds	r3, r3, #1			PC 15
+	0001 1100 0101 1011
+	1c5b
+
+	str	r3, [sp, #8]			PC 16
+	1001 0011 0000 1000
+	9308
+.L2:
+	ldr	r2, [sp, #8]			PC 17
+	1001 1010 0000 1000
+	9a08
+
+	ldr	r3, [sp, #16]			PC 18
+	1001 1011 0001 0000
+	9b10
+
+	cmp	r2, r3					PC 19
+	0100 0010 1001 1010
+	429a
+	
+	blt	.L3						PC 20
+	1101 1011 0000 1010
+	db0a
+	
+	movs	r3, #1				PC 21
+	0010 0011 0000 0001
+	2301
+
+	str	r3, [sp, #20]			PC 22
+	1001 0011 0001 0100
+	9314
+
+	ldr	r2, [sp, #20]			PC 23
+	1001 1011 0001 0100
+	9b14
+	
+	ldr	r3, [sp, #16]			PC 24
+	1001 1011 0001 0000
+	9b10
+
+	//lsl	r3, r2, r3				PC 25
+	//sp #20 ==> r2 ==> 1
+	//sp #16 ==> r3 ==> 10	
+	//swap
+
+	str r3, [sp, #24]			PC 25
+	1001 0011 0001 1000
+	9318
+
+	str r2, [sp, #28]			PC 26
+	1001 0010 0001 1100
+	921c
+
+	ldr r3, [sp, #28]			PC 27
+	1001 1011 0001 1100
+	9b1c
+
+	ldr r2, [sp, #24]			PC 28
+	1001 1010 0001 1000
+	9a18
+	//r2 ==> 10
+	//r3 ==> 1
+	
+	lsls r3, r2					PC 29
+	0100 0000 1001 0011
+	4093
+
+	str	r3, [sp, #20]			PC 30
+	1001 0011 0001 0100
+	9314
+
+	ldr	r2, [sp, #4]			PC 31
+	1001 1010 0000 0100
+	9a04
+
+	ldr	r3, [sp, #20]			PC 32
+	1001 1011 0001 0100
+	9b14
+
+	cmp	r2, r3					PC 33
+	0100 0010 1001 1010
+	429a
+
+	bne	.L4						PC 34
+	1101 0001 0010 0101
+	d125
+
+	movs	r3, #0				PC 35
+	0010 0011 0000 0000
+	2300
+
+	b	.L5						PC 36
+	1101 1110 0010 0110
+	de26
+.L4:
+	//mov	r3, #-1					PC 33
+
+	movs r3, #255				PC 37
+	0010 0011 1111 1111
+	23ff	
+
+.L5:
+	//mov	r0, r3					PC 34
+
+	str r3, [sp, #28]			PC 38
+	1001 0011 0001 1100
+	931c
+
+	ldr r0, [sp, #28]			PC 39
+	1001 1000 0001 1100
+	981c
+
+	add	sp, sp, #32				PC 40
+
+	@ sp needed
+	bx	lr
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609"
+	.section	.note.GNU-stack,"",%progbits
