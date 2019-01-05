@@ -1,0 +1,49 @@
+main:
+    @ args = 0, pretend = 0, frame = 32
+    @ frame_needed = 0, uses_anonymous_args = 0
+    @ link register save eliminated.
+    sub sp, sp, #32
+    movs    r3, #2
+    str r3, [sp, #12]
+    movs    r3, #4
+    str r3, [sp, #16]
+    movs    r3, #1
+    str r3, [sp, #4]
+    movs    r3, #0
+    str r3, [sp, #8]
+    b   .L2
+.L3:
+    ldr r3, [sp, #4]
+    ldr r2, [sp, #12]
+    mul r3, r2, r3
+    str r3, [sp, #4]
+    ldr r3, [sp, #8]
+    adds    r3, r3, #1
+    str r3, [sp, #8]
+.L2:
+    ldr r2, [sp, #8]
+    ldr r3, [sp, #16]
+    cmp r2, r3
+    blt .L3
+    movs r3, #1
+    str r3, [sp, #20]
+    ldr r2, [sp, #20]
+    ldr r3, [sp, #16]
+    str r3, [sp, #24]
+    str r2, [sp, #28]
+    ldr r3, [sp, #28]
+    ldr r2, [sp, #24]
+    lsls r3, r2
+    str r3, [sp, #20]
+    ldr r2, [sp, #4]
+    ldr r3, [sp, #20]
+    cmp r2, r3
+    bne .L4
+    movs    r3, #0
+    b   .L5
+.L4:
+    movs r3, #255
+.L5:
+    str r3, [sp, #28]
+    ldr r0, [sp, #28]
+    add sp, sp, #32
