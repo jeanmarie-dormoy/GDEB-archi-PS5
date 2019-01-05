@@ -337,7 +337,6 @@ def conditional(lineArray,position) :
 if __name__ == '__main__':
 	if (len(sys.argv) != 2) : 
 		print("N'oubliez pas d'ajouter en argument le fichier d'entree")
-		exit(1)
 	else :
 		translate(getInstructions(sys.argv[1]))
 		print("Ecriture reussie dans le fichier \'out\'")
