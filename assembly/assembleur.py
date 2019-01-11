@@ -24,8 +24,6 @@ def translate(lines) :
 			res += str(getSTR(spacesplit[1])) +"\n"
 		if spacesplit[0][0] == 'B' :
 			res += conditional(spacesplit,searchStr(lines,spacesplit[1]+':')) + "\n"
-		if spacesplit[0]=='SUB' : 
-			res += str(getSUB(spacesplit[1])) +"\n"
 		if spacesplit[0]=='MOVS' or spacesplit[0]=='MOV':
 			res += str(getMOVS(spacesplit[1])) +"\n"	
 		if spacesplit[0]=='MUL' or spacesplit[0]=='MULS' :
@@ -40,7 +38,7 @@ def translate(lines) :
 			res += str(getLSLS(spacesplit[1])) +"\n"
 		if spacesplit[0]=='ASRS' :
 			res += str(getASRS(spacesplit[1])) +"\n"
-		if spacesplit[0]=='SUBS' :
+		if spacesplit[0]=='SUBS' or spacesplit[0]=='SUB' :
 			res += str(getSUBS(spacesplit[1])) +"\n"
 		if spacesplit[0]=='ANDS' :
 			res += str(getANDS(spacesplit[1])) +"\n"
@@ -208,15 +206,20 @@ def getADDS(values) :
 		return hex(int(res, 2))[2:]
 	else :
 		values = values.split(',')
-		rd = reformat(values[0][1][2:],3)
-		rn = reformat(values[1][1][2:],3)
-		rm = reformat(values[2][1][2:],3)
+		rd = reformat(values[0][1],3)
+		rn = reformat(values[1][1],3)
+		rm = reformat(values[2][1],3)
 		res = "0001100" + rm + rn + rd
 		return hex(int(res, 2))[2:]
 
 def getSUBS(values) :
 	values = values.replace('[','')
 	values = values.replace(']','')
+	if((values.find("SP") !=-1 or values.find("sp")!=-1) and values.find('#') != -1) :
+		values = values.split('#')
+		a = reformat(values[1],7)
+		a = '101100001' + a
+		return hex(int(a, 2))[2:]
 	if (values.find('#') != -1):
 		imm = reformat(values.split('#')[1],3)
 		values = values.split(',')
@@ -226,9 +229,10 @@ def getSUBS(values) :
 		return hex(int(res, 2))[2:]
 	else :
 		values = values.split(',')
-		rd = reformat(values[0][1][2:],3)
-		rn = reformat(values[1][1][2:],3)
-		rm = reformat(values[2][1][2:],3)
+		print(values[0][1])
+		rd = reformat(values[0][1],3)
+		rn = reformat(values[1][1],3)
+		rm = reformat(values[2][1],3)
 		res = "0001101" + rm + rn + rd
 		return hex(int(res, 2))[2:]
 
@@ -317,6 +321,7 @@ def searchStr(lines,strn) :
 def getSUB(line):
 	line = line.split('#')
 	a = reformat(line[1],7)
+
 	a = '101100001' + a
 	return hex(int(a, 2))[2:]
 
